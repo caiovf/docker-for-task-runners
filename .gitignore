@@ -1,0 +1,33 @@
+# Dependências do node
+/node_modules
+
+# Diretórios de build
+/.next
+/out
+
+# Configurações locais e caches
+/.pnp
+.pnp.js
+.cache
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Relatórios de cobertura de testes
+coverage/
+
+# Configurações do editor de texto/IDE
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários e cache
+*.swp
+.tmp/
