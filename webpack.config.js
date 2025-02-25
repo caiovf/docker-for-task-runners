@@ -6,14 +6,12 @@ const TerserTPlugin = require("terser-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-const authorName = "teste de tema";
-const themeLabel = "Webpack";
-const themeName = "webpack";
+const themeLabel = process.env.THEME_LABEL;
+const themeName = process.env.THEME_NAME;
+const authorName = process.env.THEME_AUTHOR;
 
 const projectDist = `wp-content/themes/${themeName}`;
 const projectSrc = "app";
-
-// console.log(path.resolve(__dirname) + "/app");
 
 module.exports = (env, argv) => {
   return {
@@ -23,10 +21,13 @@ module.exports = (env, argv) => {
       ignored: "**/node_modules",
     },
     entry: {
-      main: [`./js/script.js`, `./css/style.scss`],
+      main: [
+        path.resolve(__dirname, "app/js/script.js"),
+        path.resolve(__dirname, "app/css/style.scss"),
+      ],
     },
     output: {
-      path: path.resolve(projectDist),
+      path: path.resolve(__dirname, projectDist),
       filename: "js/[name].js",
       chunkFilename: "js/[name].js",
       clean: true,
@@ -87,7 +88,7 @@ module.exports = (env, argv) => {
           {
             from: projectSrc,
             globOptions: {
-              ignore: ["**/css/*.scss", "**/css/**/**.scss", "**/js/**"],
+              ignore: ["app/css/*.scss", "app/css/**/**.scss", "app/js/**"],
             },
           },
         ],
