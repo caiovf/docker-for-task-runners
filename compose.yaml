@@ -1,0 +1,10 @@
+services:
+  webpack-container:
+    container_name: "webpack-container"
+    image: node:20.18.1
+    volumes:
+      - ./wp-content:/app/wp-content
+      - ./app:/app
+      - ./package.json:/package.json
+    working_dir: /app
+    command: bash -c "npm install && npm run webpack:prod"
