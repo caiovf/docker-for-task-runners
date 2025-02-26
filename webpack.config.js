@@ -6,9 +6,9 @@ const TerserTPlugin = require("terser-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-const themeLabel = process.env.THEME_LABEL;
-const themeName = process.env.THEME_NAME;
-const authorName = process.env.THEME_AUTHOR;
+const themeLabel = "Webpack";
+const themeName = "webpack";
+const authorName = "c.ferreira";
 
 const projectDist = `wp-content/themes/${themeName}`;
 const projectSrc = "app";
@@ -30,7 +30,7 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, projectDist),
       filename: "js/[name].js",
       chunkFilename: "js/[name].js",
-      clean: true,
+      // clean: true,
     },
     optimization: {
       minimize: true,
@@ -86,10 +86,11 @@ module.exports = (env, argv) => {
       new CopyPlugin({
         patterns: [
           {
-            from: projectSrc,
+            from: path.resolve(__dirname, "app"),
             globOptions: {
-              ignore: ["app/css/*.scss", "app/css/**/**.scss", "app/js/**"],
+              ignore: ["**/css/**/*.scss", "**/js/**/*.js"],
             },
+            noErrorOnMissing: true,
           },
         ],
       }),

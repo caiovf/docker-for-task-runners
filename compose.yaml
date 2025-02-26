@@ -2,12 +2,9 @@ services:
   webpack-container:
     container_name: "webpack-container"
     image: node:20.18.1
-    environment:
-      - THEME_NAME=${THEME_NAME}
     volumes:
       - ./app:/app
       - ./package.json:/package.json
-      - ./webpack.config.js:/webpack.config.js
       - ./webpack.config.js:/webpack.config.js
       - ./wp-content/themes:/wp-content/themes
     working_dir: /
